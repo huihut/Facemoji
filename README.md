@@ -1,6 +1,6 @@
 # Facemoji
 
-A Unity project that detects facial expressions, converts them into emoticon or cartoon images, and generates gif images or small videos.
+A Unity project that detects facial expressions, converts them into emoji or cartoon images, and generates gif images or small videos.
 
 ## Assets Library
 
