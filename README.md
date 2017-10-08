@@ -1,6 +1,6 @@
 # Facemoji
 
-Detects facial expressions, converts them into emoji or cartoon images and generates gif images or small videos.
+A Unity project that detects facial expressions, converts them into emoticon or cartoon images, and generates gif images or small videos.
 
 ## Assets Library
 
@@ -8,12 +8,20 @@ Detects facial expressions, converts them into emoji or cartoon images and gener
 
 * [OpenCVForUnity](https://enoxsoftware.com/opencvforunity/)
 * [DlibFaceLandmarkDetector](https://enoxsoftware.com/dlibfacelandmarkdetector/)
+* [shape_predictor_68_face_landmarks.dat.bz2](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
 * [Live2D Cubism SDK](http://sites.cybernoids.jp/cubism-sdk2_e/unity_2-1)
 * [DlibFaceLandmarkDetectorWithLive2DSample](https://github.com/utibenkei/DlibFaceLandmarkDetectorWithLive2DSample)
 * [Recorder](https://github.com/Chman/Moments)
 
 ### Unofficial
 
-* [pan.baidu.com . Facemoji/OfficialAssetsLibrary](http://pan.baidu.com/s/1eSnKtoQ)
+* [Facemoji/OfficialAssetsLibrary](http://pan.baidu.com/s/1eSnKtoQ)
 
 ## Usage
+
+* `git clone https://github.com/huihut/Facemoji.git`
+* Create new Unity project (called `Facemoji`)
+* Copy `Facemoji/*` to your unity project
+* Copy `shape_predictor_68_face_landmarks.dat` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ) to `Facemoji/Assets/StreamingAssets`
+* Import `OpenCV_and_Dlib_for_Unity.unitypackage` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
+* Build & Run
