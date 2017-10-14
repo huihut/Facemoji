@@ -25,6 +25,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Moments.Encoder;
 using ThreadPriority = System.Threading.ThreadPriority;
 
@@ -342,11 +343,50 @@ namespace Moments
 			// Make sure the output folder is set or use the default one
 			if (string.IsNullOrEmpty(SaveFolder))
 			{
-				#if UNITY_EDITOR
-				SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
-				#else
-				SaveFolder = Application.persistentDataPath;
-				#endif
+                try
+                {
+
+#if UNITY_EDITOR
+                    SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
+#else
+                    SaveFolder = Application.persistentDataPath;
+
+#endif
+
+                    //                    if (Application.platform == RuntimePlatform.Android)
+                    //                    {
+                    //                        // Android DCIM/Facemoji Path
+                    //                        //SaveFolder = "/mnt/sdcard/DCIM/Facemoji/";
+                    //                        SaveFolder = "/storage/emulated/0/DCIM/Facemoji";
+                    //                        if (!Directory.Exists(SaveFolder))
+                    //                        {
+                    //                            Directory.CreateDirectory(SaveFolder);
+                    //                        }
+
+                    //                    }
+                    //                    else if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+                    //                    {
+                    //                        // Windows Pictures/Facemoji Path
+                    //                        SaveFolder = "%USERPROFILE%/Pictures/Facemoji";
+                    //                        if (!Directory.Exists(SaveFolder))
+                    //                        {
+                    //                            Directory.CreateDirectory(SaveFolder);
+                    //                        }
+                    //                    }
+                    //                    else
+                    //                    {
+                    //#if UNITY_EDITOR
+                    //                        SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
+                    //#else
+                    //				        SaveFolder = Application.persistentDataPath;
+                    //#endif
+                    //                    }
+                }
+                catch (IOException e)
+                {
+                    print(e);
+                }
+
 			}
 		}
 
