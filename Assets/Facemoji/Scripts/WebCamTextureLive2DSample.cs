@@ -20,7 +20,7 @@ namespace Facemoji
     [RequireComponent (typeof(WebCamTextureToMatHelper))]
     public class WebCamTextureLive2DSample : MonoBehaviour
     {
-	
+
         /// <summary>
         /// The colors.
         /// </summary>
@@ -149,7 +149,7 @@ namespace Facemoji
                 live2DModel.setPhysicsFileFromBytes (File.ReadAllBytes (shizuku_physics_filepath));
             if (!string.IsNullOrEmpty (shizuku_pose_filepath))
                 live2DModel.setPoseFileFromBytes (File.ReadAllBytes (shizuku_pose_filepath));
-            
+
 
             faceLandmarkDetector = new FaceLandmarkDetector (shape_predictor_68_face_landmarks_dat_filepath);
             frontalFaceParam = new FrontalFaceParam ();
@@ -223,7 +223,7 @@ namespace Facemoji
                 SceneManager.LoadScene("DlibFaceLandmarkDetectorWithLive2DSample");
 #else
             Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
-#endif  
+#endif
             }
 
             if (webCamTextureToMatHelper.IsPlaying () && webCamTextureToMatHelper.DidUpdateThisFrame ()) {
@@ -289,7 +289,7 @@ namespace Facemoji
                 if (eyeOpen_L < 0.7f)
                     eyeOpen_L = 0;
                 live2DModel.PARAM_EYE_L_OPEN = eyeOpen_L;
-                
+
                 // eye_open_R
                 float eyeOpen_R = getRaitoOfEyeOpen_R (points);
                 if (eyeOpen_R > 0.8f && eyeOpen_R < 1.1f)
@@ -404,60 +404,12 @@ namespace Facemoji
         }
 
         /// <summary>
-        /// Raises the back button event.
-        /// </summary>
-//        public void OnBackButton ()
-//        {
-//            #if UNITY_5_3 || UNITY_5_3_OR_NEWER
-//            SceneManager.LoadScene ("DlibFaceLandmarkDetectorWithLive2DSample");
-//#else
-//            Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
-//#endif
-//        }
-
-        /// <summary>
-        /// Raises the play button event.
-        /// </summary>
-        //public void OnPlayButton ()
-        //{
-        //    webCamTextureToMatHelper.Play ();
-        //}
-
-        /// <summary>
-        /// Raises the pause button event.
-        /// </summary>
-        //public void OnPauseButton ()
-        //{
-        //    webCamTextureToMatHelper.Pause ();
-        //}
-
-        /// <summary>
-        /// Raises the stop button event.
-        /// </summary>
-        //public void OnStopButton ()
-        //{
-        //    webCamTextureToMatHelper.Stop ();
-        //}
-
-        /// <summary>
         /// Raises the change camera button event.
         /// </summary>
         public void OnChangeCameraButton ()
         {
             webCamTextureToMatHelper.Init (null, webCamTextureToMatHelper.requestWidth, webCamTextureToMatHelper.requestHeight, !webCamTextureToMatHelper.requestIsFrontFacing);
         }
-
-        /// <summary>
-        /// Raises the hide camera image toggle event.
-        /// </summary>
-        //public void OnHideCameraImageToggle ()
-        //{
-        //    if (isHideCameraImage) {
-        //        isHideCameraImage = false;
-        //    } else {
-        //        isHideCameraImage = true;
-        //    }
-        //}
 
         public void OnStartButton()
         {
@@ -468,12 +420,6 @@ namespace Facemoji
         {
             Global.isStartRecord = false;
         }
-
-        public void OnSaveButton()
-        {
-
-        }
-
-
+        
     }
 }

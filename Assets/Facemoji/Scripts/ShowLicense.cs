@@ -19,16 +19,23 @@ namespace Facemoji
         // Update is called once per frame
         void Update ()
         {
-
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                #if UNITY_5_3 || UNITY_5_3_OR_NEWER
+                SceneManager.LoadScene("DlibFaceLandmarkDetectorWithLive2DSample");
+                #else
+                Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
+                #endif
+            }
         }
 
         public void OnBackButton ()
         {
             #if UNITY_5_3 || UNITY_5_3_OR_NEWER
             SceneManager.LoadScene ("DlibFaceLandmarkDetectorWithLive2DSample");
-#else
+            #else
             Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
-#endif
+            #endif
         }
     }
 }
