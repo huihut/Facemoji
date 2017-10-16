@@ -154,7 +154,10 @@ namespace Facemoji
             faceLandmarkDetector = new FaceLandmarkDetector (shape_predictor_68_face_landmarks_dat_filepath);
             frontalFaceParam = new FrontalFaceParam ();
 
+            // Use the front camera to Init
             webCamTextureToMatHelper.Init(null, webCamTextureToMatHelper.requestWidth, webCamTextureToMatHelper.requestHeight, !webCamTextureToMatHelper.requestIsFrontFacing);
+
+            //// Default initialization
             //webCamTextureToMatHelper.Init();
             //webCamTextureToMatHelper.Init(null, 320, 240, false);
         }
