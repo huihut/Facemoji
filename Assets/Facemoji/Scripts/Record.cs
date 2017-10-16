@@ -95,7 +95,6 @@ namespace Facemoji
             GUILayout.BeginVertical();
 
             GUILayout.Space(10f);
-            GUILayout.Label(Application.dataPath);
             GUILayout.Label("Press [Start] to export the buffered frames to a gif file.");
             GUILayout.Label("Recorder State : " + m_Recorder.State.ToString());
 
