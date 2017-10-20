@@ -28,7 +28,8 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 ## Download
 
-* [Facemoji/Platform/Android](http://pan.baidu.com/s/1eSnKtoQ)
+* [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
+* [pan.baidu . Facemoji/Platform](http://pan.baidu.com/s/1eSnKtoQ)
 
 ## Preview
 
@@ -36,7 +37,9 @@ Start app, click `emoji` !
 
 ![](Images/Screenshot_Menu.jpg)
 
-Click the `Start` button to record gif !
+Click the `Start` button to record 3 seconds of gif !
+
+Recorder State : **Recording**(Ready to record) -> **PreProcessing**(Is recording) -> **Paused**(Processing gif) -> **Recording**(Ready to record)
 
 ![](Images/Screenshot_CamTexture.jpg)
 
