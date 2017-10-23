@@ -26,7 +26,7 @@ A Unity project that detects facial expressions, converts them into emoji or car
 * Import `OpenCV_and_Dlib_for_Unity.unitypackage` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
 * Build & Run
 
-## Download
+## Releases
 
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
 * [pan.baidu . Facemoji/Platform](http://pan.baidu.com/s/1eSnKtoQ)
