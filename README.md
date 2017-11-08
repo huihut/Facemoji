@@ -19,11 +19,12 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 ## Usage
 
+* Download `shape_predictor_68_face_landmarks.dat` and `OpenCV_and_Dlib_for_Unity.unitypackage` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
 * `git clone https://github.com/huihut/Facemoji.git`
 * Create new Unity project (called `Facemoji`)
 * Copy `Facemoji/*` to your unity project
-* Copy `shape_predictor_68_face_landmarks.dat` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ) to `Facemoji/Assets/StreamingAssets`
-* Import `OpenCV_and_Dlib_for_Unity.unitypackage` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
+* Copy `shape_predictor_68_face_landmarks.dat` to `Facemoji/Assets/StreamingAssets/`
+* Import `OpenCV_and_Dlib_for_Unity.unitypackage`
 * Build & Run
 
 ## Releases
@@ -45,6 +46,6 @@ Recorder State : **Recording**(Ready to record) -> **PreProcessing**(Is recordin
 
 Save the gif in `Application.dataPath`
 
-(Android in `/storage/emulated/0/Android/data/com.huihut.facemoji/files`)
+(Android in `/storage/emulated/0/Android/data/com.huihut.facemoji/files/`)
 
 ![](Images/GifCapture.gif)
