@@ -15,11 +15,12 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 ### Unofficial
 
-* [Facemoji/OfficialAssetsLibrary](http://pan.baidu.com/s/1eSnKtoQ)
+* [drive.google . Facemoji](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
+* [pan.baidu . Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
 
 ## Usage
 
-* Download `shape_predictor_68_face_landmarks.dat` and `OpenCV_and_Dlib_for_Unity.unitypackage` from [Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
+* Download `shape_predictor_68_face_landmarks.dat` and `OpenCV_and_Dlib_for_Unity.unitypackage` from [drive.google . Facemoji](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [pan.baidu . Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
 * `git clone https://github.com/huihut/Facemoji.git`
 * Create new Unity project (called `Facemoji`)
 * Copy `Facemoji/*` to your unity project
