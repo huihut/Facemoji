@@ -15,24 +15,24 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 ### Unofficial
 
-* [drive.google . Facemoji](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [pan.baidu . Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
+* [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
+* [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
 
 ## Usage
 
-* Download `shape_predictor_68_face_landmarks.dat` and `OpenCV_and_Dlib_for_Unity.unitypackage` from [drive.google . Facemoji](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [pan.baidu . Facemoji](http://pan.baidu.com/s/1eSnKtoQ)
+* Download `shape_predictor_68_face_landmarks.dat`(Model) and `Facemoji_Plugins_Assets.unitypackage`(Streamlined OpenCV, Dlib, Live2D Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
 * `git clone https://github.com/huihut/Facemoji.git`
-* Create new Unity project (called `Facemoji`)
-* Copy `Facemoji/*` to your unity project
-* Copy `shape_predictor_68_face_landmarks.dat` to `Facemoji/Assets/StreamingAssets/`
-* Import `OpenCV_and_Dlib_for_Unity.unitypackage`
+* Create new Unity project (called `FacemojiDemo`)
+* Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
+* Copy `shape_predictor_68_face_landmarks.dat` to your `FacemojiDemo/Assets/StreamingAssets/`
+* Import `Facemoji_Plugins_Assets.unitypackage`
 * Build & Run
 
 ## Releases
 
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
-* [drive.google . Facemoji/Platform](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [pan.baidu . Facemoji/Platform](http://pan.baidu.com/s/1eSnKtoQ)
+* [Drive.Google . Facemoji/Platform](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
+* [Pan.Baidu . Facemoji/Platform](http://pan.baidu.com/s/1eSnKtoQ)
 
 ## Preview
 
