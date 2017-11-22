@@ -20,7 +20,7 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 ## Setup
 
-* Download `shape_predictor_68_face_landmarks.dat`(Model) and `Facemoji_Plugins_Assets.unitypackage`(Streamlined OpenCV, Dlib, Live2D Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
+* Download `shape_predictor_68_face_landmarks.dat`(Facial Landmark Detector) and `Facemoji_Plugins_Assets.unitypackage`(Streamlined OpenCV, Dlib, Live2D Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
 * `git clone https://github.com/huihut/Facemoji.git`
 * Create new Unity project (called `FacemojiDemo`)
 * Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
@@ -36,11 +36,11 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 ## Preview
 
-Start app, click `emoji` !
+Start app, click the `emoji` !
 
 ![](Images/Capture_Facemoji.jpg)
 
-Click the `Start` button below to record 3 seconds of gif !
+Click the `Start Button` below to record 3 seconds of gif !
 
 Recorder State : **Recording**(Ready to record) -> **PreProcessing**(Is recording) -> **Paused**(Compressing gif) -> **Recording**(Ready to record)
 
