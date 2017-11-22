@@ -40,39 +40,40 @@ namespace Moments
 		PreProcessing
 	}
 
-	[AddComponentMenu("Miscellaneous/Moments Recorder")]
-	[RequireComponent(typeof(Camera)), DisallowMultipleComponent]
-	public sealed class Recorder : MonoBehaviour
-	{
-		#region Exposed fields
+    [AddComponentMenu("Miscellaneous/Moments Recorder")]
+    [RequireComponent(typeof(Camera)), DisallowMultipleComponent]
+    public sealed class Recorder : MonoBehaviour
+    {
+        #region Exposed fields
 
-		// These fields aren't public, the user shouldn't modify them directly as they can't break
-		// everything if not used correctly. Use Setup() instead.
+        // These fields aren't public, the user shouldn't modify them directly as they can't break
+        // everything if not used correctly. Use Setup() instead.
 
-		[SerializeField, Min(8)]
-		int m_Width = 320;
+        [SerializeField, Min(8)]
+        int m_Width = 320;
 
-		[SerializeField, Min(8)]
-		int m_Height = 200;
+        [SerializeField, Min(8)]
+        int m_Height = 200;
 
-		[SerializeField]
-		bool m_AutoAspect = true;
+        [SerializeField]
+        bool m_AutoAspect = true;
 
-		[SerializeField, Range(1, 30)]
-		int m_FramePerSecond = 15;
+        [SerializeField, Range(1, 30)]
+        int m_FramePerSecond = 15;
 
-		[SerializeField, Min(-1)]
-		int m_Repeat = 0;
+        [SerializeField, Min(-1)]
+        int m_Repeat = 0;
 
-		[SerializeField, Range(1, 100)]
-		int m_Quality = 15;
+        [SerializeField, Range(1, 100)]
+        int m_Quality = 15;
 
-		[SerializeField, Min(0.1f)]
-		float m_BufferSize = 3f;
+        // gif size = 3 seconds
+        [SerializeField, Min(0.1f)]
+        public float m_BufferSize = 3f;
 
-		#endregion
+        #endregion
 
-		#region Public fields
+        #region Public fields
 
 		/// <summary>
 		/// Current state of the recorder.
@@ -353,34 +354,36 @@ namespace Moments
 
 #endif
 
-                    //                    if (Application.platform == RuntimePlatform.Android)
-                    //                    {
-                    //                        // Android DCIM/Facemoji Path
-                    //                        //SaveFolder = "/mnt/sdcard/DCIM/Facemoji/";
-                    //                        SaveFolder = "/storage/emulated/0/DCIM/Facemoji";
-                    //                        if (!Directory.Exists(SaveFolder))
-                    //                        {
-                    //                            Directory.CreateDirectory(SaveFolder);
-                    //                        }
+                    // Setting the storage location of different platforms
 
-                    //                    }
-                    //                    else if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
-                    //                    {
-                    //                        // Windows Pictures/Facemoji Path
-                    //                        SaveFolder = "%USERPROFILE%/Pictures/Facemoji";
-                    //                        if (!Directory.Exists(SaveFolder))
-                    //                        {
-                    //                            Directory.CreateDirectory(SaveFolder);
-                    //                        }
-                    //                    }
-                    //                    else
-                    //                    {
-                    //#if UNITY_EDITOR
-                    //                        SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
-                    //#else
-                    //				        SaveFolder = Application.persistentDataPath;
-                    //#endif
-                    //                    }
+//                    if (Application.platform == RuntimePlatform.Android)
+//                    {
+//                        // Android DCIM/Facemoji Path
+//                        //SaveFolder = "/mnt/sdcard/DCIM/Facemoji/";
+//                        SaveFolder = "/storage/emulated/0/DCIM/Facemoji";
+//                        if (!Directory.Exists(SaveFolder))
+//                        {
+//                            Directory.CreateDirectory(SaveFolder);
+//                        }
+
+//                    }
+//                    else if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+//                    {
+//                        // Windows Pictures/Facemoji Path
+//                        SaveFolder = "%USERPROFILE%/Pictures/Facemoji";
+//                        if (!Directory.Exists(SaveFolder))
+//                        {
+//                            Directory.CreateDirectory(SaveFolder);
+//                        }
+//                    }
+//                    else
+//                    {
+//#if UNITY_EDITOR
+//                        SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
+//#else
+//                    				        SaveFolder = Application.persistentDataPath;
+//#endif
+//                    }
                 }
                 catch (IOException e)
                 {

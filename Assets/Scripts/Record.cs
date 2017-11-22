@@ -3,11 +3,6 @@ using Moments;
 
 namespace Facemoji
 {
-    class Global
-    {
-        public static bool isStartRecord = false;
-    }
-
     [RequireComponent(typeof(Recorder)), AddComponentMenu("Facemoji Record")]
     public class Record : MonoBehaviour
     {
@@ -15,6 +10,9 @@ namespace Facemoji
         float m_Progress = 0f;
         string m_LastFile = "";
         bool m_IsSaving = false;
+
+        // Is recording?
+        public static bool isRecording = false;
 
         void Start()
         {
@@ -74,38 +72,63 @@ namespace Facemoji
         void Update()
         {
             // Click OnStartButton to start recording
-            if (Global.isStartRecord)
+            if (isRecording)
             {
                 // Compress & save the buffered frames to a gif file. We should check the State
                 // of the Recorder before saving, but for the sake of this example we won't, so
                 // you'll see a warning in the console if you try saving while the Recorder is
                 // processing another gif.
                 m_Recorder.Save();
-                m_Progress = 0f;
 
-                // The setting starts recording to false
-                Global.isStartRecord = false;
+                // Recording completed
+                // The start button can be pressed, the finish button can not be pressed
+                if (m_IsSaving)
+                {
+                    // Recording completed
+                    isRecording = false;
+                    // The start button can be pressed, the finish button can not be pressed
+                    WebCamTextureLive2DSample.startBtn.SetActive(true);
+                    WebCamTextureLive2DSample.finishBtn.SetActive(false);
+                }
+
+                m_Progress = 0f;
+               
             }
         }
 
         void OnGUI()
-        {
+        {       
+            Rect rect = new Rect(0, 110, Screen.width, Screen.height);
+
+            // GUIStyle -> fontSize
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = new Color(255, 255, 255);
+            style.fontSize = 24;
+
+            GUIStyle styleBigger = new GUIStyle();
+            styleBigger.normal.textColor = new Color(255, 255, 255);
+            styleBigger.fontSize = 35;
+
+            // GUILayout -> Label
+            GUILayout.BeginArea(rect);
+            GUILayout.Width(Screen.width);
             GUILayout.BeginHorizontal();
             GUILayout.Space(10f);
             GUILayout.BeginVertical();
-
             GUILayout.Space(10f);
-            GUILayout.Label("Press [Start] to export the buffered frames to a gif file.");
-            GUILayout.Label("Recorder State : " + m_Recorder.State.ToString());
+
+            //GUILayout.Label("Press [StartButton] to export the buffered frames to a gif file.", style);
+            GUILayout.Label("Recorder State : " + m_Recorder.State.ToString(), styleBigger);
 
             if (m_IsSaving)
-                GUILayout.Label("Progress Report : " + m_Progress.ToString("F2") + "%");
+                GUILayout.Label("Progress Report : " + m_Progress.ToString("F2") + "%", styleBigger);
 
             if (!string.IsNullOrEmpty(m_LastFile))
-                GUILayout.Label("Last File Saved : " + m_LastFile);
+                GUILayout.Label("Save to : \n" + m_LastFile, style, GUILayout.MaxWidth(Screen.width), GUILayout.ExpandWidth(false));
 
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
+            GUILayout.EndArea();
         }
 
     }

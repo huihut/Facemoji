@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Runtime.InteropServices;
 using System.IO;
+using UnityEngine.UI;
 
 #if UNITY_5_3 || UNITY_5_3_OR_NEWER
 using UnityEngine.SceneManagement;
@@ -20,6 +21,15 @@ namespace Facemoji
     [RequireComponent (typeof(WebCamTextureToMatHelper))]
     public class WebCamTextureLive2DSample : MonoBehaviour
     {
+        /// <summary>
+        /// Start Button
+        /// </summary>
+        public static GameObject startBtn;
+
+        /// <summary>
+        /// Finish Button
+        /// </summary>
+        public static GameObject finishBtn;
 
         /// <summary>
         /// The colors.
@@ -73,11 +83,16 @@ namespace Facemoji
         private string shizuku_physics_filepath;
         private string shizuku_pose_filepath;
         private string[] texture_filepath = new string[6];
-
+        
 
         // Use this for initialization
         void Start ()
         {
+            startBtn = GameObject.Find("StartButton");
+            finishBtn = GameObject.Find("FinishButton");
+            startBtn.SetActive(true);
+            finishBtn.SetActive(false);
+
             webCamTextureToMatHelper = gameObject.GetComponent<WebCamTextureToMatHelper> ();
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -252,9 +267,7 @@ namespace Facemoji
                         break;
                     }
                 }
-
-
-
+                
                 if (isHideCameraImage)
                     Imgproc.rectangle (rgbaMat, new Point (0, 0), new Point (rgbaMat.width (), rgbaMat.height ()), new Scalar (0, 0, 0, 255), -1);
 
@@ -280,26 +293,26 @@ namespace Facemoji
                 float rotateY = (angles.y > 180) ? angles.y - 360 : angles.y;
                 float rotateZ = (angles.z > 180) ? angles.z - 360 : angles.z;
                 // Coordinate transformation
-                live2DModel.PARAM_ANGLE.Set (-rotateY, rotateX, -rotateZ);
-
-
+                live2DModel.PARAM_ANGLE.Set(-rotateY, rotateX, -rotateZ);
+                //live2DModel.PARAM_ANGLE.Set(-Roundf(rotateY, 0.5f), Roundf(rotateX, 0.5f), -Roundf(rotateZ, 0.5f));
+                
                 // eye_open_L
                 float eyeOpen_L = getRaitoOfEyeOpen_L (points);
-                if (eyeOpen_L > 0.8f && eyeOpen_L < 1.1f)
+                if (eyeOpen_L > 0.6f && eyeOpen_L < 1.1f)
                     eyeOpen_L = 1;
-                if (eyeOpen_L >= 1.1f)
+                else if (eyeOpen_L >= 1.1f)
                     eyeOpen_L = 2;
-                if (eyeOpen_L < 0.7f)
+                else if (eyeOpen_L <= 0.6f)
                     eyeOpen_L = 0;
                 live2DModel.PARAM_EYE_L_OPEN = eyeOpen_L;
 
                 // eye_open_R
                 float eyeOpen_R = getRaitoOfEyeOpen_R (points);
-                if (eyeOpen_R > 0.8f && eyeOpen_R < 1.1f)
+                if (eyeOpen_R > 0.6f && eyeOpen_R < 1.1f)
                     eyeOpen_R = 1;
-                if (eyeOpen_R >= 1.1f)
+                else if (eyeOpen_R >= 1.1f)
                     eyeOpen_R = 2;
-                if (eyeOpen_R < 0.7f)
+                else if (eyeOpen_R < 0.6f)
                     eyeOpen_R = 0;
                 live2DModel.PARAM_EYE_R_OPEN = eyeOpen_R;
 
@@ -311,15 +324,19 @@ namespace Facemoji
 
                 // brow_L_Y
                 float brow_L_Y = getRaitoOfBROW_L_Y (points);
-                live2DModel.PARAM_BROW_L_Y = brow_L_Y;
+                // Keep three decimal places to reduce the vibration
+                live2DModel.PARAM_BROW_L_Y = Roundf(brow_L_Y, 1000f);
+                //live2DModel.PARAM_BROW_L_Y = (float)Math.Round(brow_L_Y, 2);
 
                 // brow_R_Y
                 float brow_R_Y = getRaitoOfBROW_R_Y (points);
-                live2DModel.PARAM_BROW_R_Y = brow_R_Y;
+                // Keep three decimal places to reduce the vibration
+                live2DModel.PARAM_BROW_R_Y = Roundf(brow_R_Y, 1000f);
+                //live2DModel.PARAM_BROW_R_Y = (float)Math.Round(brow_R_Y, 2);
 
                 // mouth_open
                 float mouthOpen = getRaitoOfMouthOpen_Y (points) * 2f;
-                if (mouthOpen < 0.3f)
+                if (mouthOpen < 0.6f)
                     mouthOpen = 0;
                 live2DModel.PARAM_MOUTH_OPEN_Y = mouthOpen;
 
@@ -328,6 +345,15 @@ namespace Facemoji
                 live2DModel.PARAM_MOUTH_SIZE = mouthSize;
 
             }
+        }
+
+        // Keep decimal places to reduce the vibration
+        private float Roundf(float f, float multiple)
+        {
+            if (multiple == 0)
+                return f;
+            int i = (int)(f * multiple);
+            return i / multiple;
         }
 
         // Calculate the degree of eye opening
@@ -353,10 +379,11 @@ namespace Facemoji
             if (points.Count != 68)
                 throw new ArgumentNullException ("Invalid landmark_points.");
 
-            float y = Mathf.Abs (points [24].y - points [27].y) / Mathf.Abs (points [27].y - points [29].y);
+            //float y = Mathf.Ceil(Mathf.Abs(points[24].y - points[27].y)) / Mathf.Abs (points [27].y - points [29].y);
+            float y = Mathf.Abs(points[24].y - points[27].y) / Mathf.Abs(points[27].y - points[29].y);
             y -= 1;
             y *= 4f;
-
+            
             return Mathf.Clamp (y, -1.0f, 1.0f);
         }
 
@@ -365,7 +392,8 @@ namespace Facemoji
             if (points.Count != 68)
                 throw new ArgumentNullException ("Invalid landmark_points.");
 
-            float y = Mathf.Abs (points [19].y - points [27].y) / Mathf.Abs (points [27].y - points [29].y);
+            //float y = Mathf.Ceil(Mathf.Abs(points[19].y - points[27].y)) / Mathf.Abs(points[27].y - points[29].y);
+            float y = Mathf.Abs(points[19].y - points[27].y) / Mathf.Abs(points[27].y - points[29].y);
             y -= 1;
             y *= 4f;
 
@@ -406,6 +434,15 @@ namespace Facemoji
             if(frontalFaceParam != null) frontalFaceParam.Dispose ();
         }
 
+        public void OnBackButton()
+        {
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("DlibFaceLandmarkDetectorWithLive2DSample");
+#else
+            Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
+#endif
+        }
+
         /// <summary>
         /// Raises the change camera button event.
         /// </summary>
@@ -416,12 +453,26 @@ namespace Facemoji
 
         public void OnStartButton()
         {
-            Global.isStartRecord = true;
+            startBtn.SetActive(false);
+            if (!Record.isRecording)
+            {
+                //Start recording
+                Record.isRecording = true;
+                finishBtn.SetActive(true);
+                //Global.isStartRecord = true;
+            }
         }
 
         public void OnFinishButton()
         {
-            Global.isStartRecord = false;
+            finishBtn.SetActive(false);
+            if (Record.isRecording)
+            {
+                //Finish recording
+                Record.isRecording = false;
+                startBtn.SetActive(true);
+                //Global.isFinishRecord = true;
+            }
         }
         
     }

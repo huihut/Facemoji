@@ -18,7 +18,7 @@ A Unity project that detects facial expressions, converts them into emoji or car
 * [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
 * [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
 
-## Usage
+## Setup
 
 * Download `shape_predictor_68_face_landmarks.dat`(Model) and `Facemoji_Plugins_Assets.unitypackage`(Streamlined OpenCV, Dlib, Live2D Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
 * `git clone https://github.com/huihut/Facemoji.git`
@@ -38,16 +38,28 @@ A Unity project that detects facial expressions, converts them into emoji or car
 
 Start app, click `emoji` !
 
-![](Images/Screenshot_Menu.jpg)
+![](Images/Capture_Facemoji.jpg)
 
-Click the `Start` button to record 3 seconds of gif !
+Click the `Start` button below to record 3 seconds of gif !
 
-Recorder State : **Recording**(Ready to record) -> **PreProcessing**(Is recording) -> **Paused**(Processing gif) -> **Recording**(Ready to record)
+Recorder State : **Recording**(Ready to record) -> **PreProcessing**(Is recording) -> **Paused**(Compressing gif) -> **Recording**(Ready to record)
 
-![](Images/Screenshot_CamTexture.jpg)
+![](Images/Capture_CamTexture.jpg)
 
 Save the gif in `Application.dataPath`
 
 (Android in `/storage/emulated/0/Android/data/com.huihut.facemoji/files/`)
 
-![](Images/GifCapture.gif)
+## Gif
+
+* Come On ! （加油！）
+    
+    ![](Images/GifCapture-ComeOn.gif)
+
+* No~ No~（不要~ 不要~）
+    
+    ![](Images/GifCapture-NoNo.gif)
+
+* Wink ! （放电！）
+    
+    ![](Images/GifCapture-Spark.gif)

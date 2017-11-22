@@ -55,5 +55,15 @@ namespace Facemoji
             Application.LoadLevel ("WebCamTextureLive2DSample");
 #endif
         }
+        
+        public void OnExitButton()
+        {
+            Application.Quit();
+        }
+
+        public void OnMenuButton()
+        {
+            // Menu
+        }
     }
 }
