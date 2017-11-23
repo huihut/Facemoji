@@ -32,14 +32,19 @@ namespace Facemoji
         public static GameObject finishBtn;
 
         /// <summary>
+        /// live2DModel.transform.localScale
+        /// </summary>
+        public float modelScale = 0.9f;
+
+        /// <summary>
         /// The colors.
         /// </summary>
-        Color32[] colors;
+        //Color32[] colors;
 
         /// <summary>
         /// The texture.
         /// </summary>
-        Texture2D texture;
+        //Texture2D texture;
 
         /// <summary>
         /// The web cam texture to mat helper.
@@ -64,12 +69,12 @@ namespace Facemoji
         /// <summary>
         /// Currently a series of facial features.
         /// </summary>
-        private List<Vector2> currentFacePoints;
+        //private List<Vector2> currentFacePoints;
 
         /// <summary>
         /// Hide the camera image.
         /// </summary>
-        private bool isHideCameraImage = true;
+        //private bool isHideCameraImage = true;
 
         /// <summary>
         /// The shape_predictor_68_face_landmarks_dat_filepath.
@@ -186,8 +191,8 @@ namespace Facemoji
 
             Mat webCamTextureMat = webCamTextureToMatHelper.GetMat ();
 
-            colors = new Color32[webCamTextureMat.cols () * webCamTextureMat.rows ()];
-            texture = new Texture2D (webCamTextureMat.cols (), webCamTextureMat.rows (), TextureFormat.RGBA32, false);
+            //colors = new Color32[webCamTextureMat.cols () * webCamTextureMat.rows ()];
+            //texture = new Texture2D (webCamTextureMat.cols (), webCamTextureMat.rows (), TextureFormat.RGBA32, false);
 
             gameObject.transform.localScale = new Vector3 (webCamTextureMat.cols (), webCamTextureMat.rows (), 1);
 
@@ -205,7 +210,8 @@ namespace Facemoji
             }
 
             if (live2DModel != null) {
-                live2DModel.transform.localScale = new Vector3 (Camera.main.orthographicSize, Camera.main.orthographicSize, 1);
+                // Set live2DModel localScale
+                live2DModel.transform.localScale = new Vector3 (Camera.main.orthographicSize * modelScale, Camera.main.orthographicSize * modelScale, 1);
             }
 
             // Renderer: makes texture appear on the screen
@@ -246,15 +252,15 @@ namespace Facemoji
 
             if (webCamTextureToMatHelper.IsPlaying () && webCamTextureToMatHelper.DidUpdateThisFrame ()) {
 
-                Mat rgbaMat = webCamTextureToMatHelper.GetMat ();
+                Mat rgbaMat = webCamTextureToMatHelper.GetMat();
 
-                OpenCVForUnityUtils.SetImage (faceLandmarkDetector, rgbaMat);
+                OpenCVForUnityUtils.SetImage(faceLandmarkDetector, rgbaMat);
 
                 List<UnityEngine.Rect> detectResult = faceLandmarkDetector.Detect ();
 
                 foreach (var rect in detectResult) {
 
-                    OpenCVForUnityUtils.DrawFaceRect (rgbaMat, rect, new Scalar (255, 0, 0, 255), 2);
+                    //OpenCVForUnityUtils.DrawFaceRect (rgbaMat, rect, new Scalar (255, 0, 0, 255), 2);
 
                     List<Vector2> points = faceLandmarkDetector.DetectLandmark (rect);
 
@@ -262,22 +268,23 @@ namespace Facemoji
 
                         live2DModelUpdate (points);
 
-                        currentFacePoints = points;
+                        //currentFacePoints = points;
 
                         break;
                     }
                 }
-                
-                if (isHideCameraImage)
-                    Imgproc.rectangle (rgbaMat, new Point (0, 0), new Point (rgbaMat.width (), rgbaMat.height ()), new Scalar (0, 0, 0, 255), -1);
 
-                if (currentFacePoints != null)
-                    OpenCVForUnityUtils.DrawFaceLandmark (rgbaMat, currentFacePoints, new Scalar (0, 255, 0, 255), 2);
+                //// Draw faces and rectangles
+                //if (isHideCameraImage)
+                //    Imgproc.rectangle(rgbaMat, new Point(0, 0), new Point(rgbaMat.width(), rgbaMat.height()), new Scalar(0, 0, 0, 255), -1);
 
-                // Mat size
-                Imgproc.putText (rgbaMat, "W:" + rgbaMat.width () + " H:" + rgbaMat.height () + " SO:" + Screen.orientation, new Point (5, rgbaMat.rows () - 10), Core.FONT_HERSHEY_SIMPLEX, 0.5, new Scalar (255, 255, 255, 255), 1, Imgproc.LINE_AA, false);
+                //if (currentFacePoints != null)
+                //    OpenCVForUnityUtils.DrawFaceLandmark(rgbaMat, currentFacePoints, new Scalar(0, 255, 0, 255), 2);
 
-                OpenCVForUnity.Utils.matToTexture2D (rgbaMat, texture, colors);
+                //// Mat size
+                //Imgproc.putText(rgbaMat, "W:" + rgbaMat.width() + " H:" + rgbaMat.height() + " SO:" + Screen.orientation, new Point(5, rgbaMat.rows() - 10), Core.FONT_HERSHEY_SIMPLEX, 0.5, new Scalar(255, 255, 255, 255), 1, Imgproc.LINE_AA, false);
+
+                //OpenCVForUnity.Utils.matToTexture2D(rgbaMat, texture, colors);
             }
 
         }
