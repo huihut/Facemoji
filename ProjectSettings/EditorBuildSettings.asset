@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Facemoji/Scenes/DlibFaceLandmarkDetectorWithLive2DSample.unity
+    path: Assets/Scenes/FacemojiStart.unity
     guid: 90850a90516404a40a55607313a71923
   - enabled: 1
-    path: Assets/Facemoji/Scenes/WebCamTextureLive2DSample.unity
+    path: Assets/Scenes/FaceTracking.unity
     guid: 7e9e2493053b8e248825558de3f709e7
+  - enabled: 1
+    path: Assets/Scenes/FacemojiAI.unity
+    guid: ad9f99460d78675438d165c0d3332d69

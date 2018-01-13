@@ -87,8 +87,8 @@ namespace Facemoji
                     // Recording completed
                     isRecording = false;
                     // The start button can be pressed, the finish button can not be pressed
-                    WebCamTextureLive2DSample.startBtn.SetActive(true);
-                    WebCamTextureLive2DSample.finishBtn.SetActive(false);
+                    FaceTracking.startBtn.SetActive(true);
+                    FaceTracking.finishBtn.SetActive(false);
                 }
 
                 m_Progress = 0f;

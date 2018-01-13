@@ -16,10 +16,10 @@ using DlibFaceLandmarkDetectorSample;
 namespace Facemoji
 {
     /// <summary>
-    /// WebCamTexture sample using Dlib face landmark detection and Live2D SDK.
+    /// FaceTracking, Use Dlib to detect face landmark and use Live2D model to track faces
     /// </summary>
     [RequireComponent (typeof(WebCamTextureToMatHelper))]
-    public class WebCamTextureLive2DSample : MonoBehaviour
+    public class FaceTracking : MonoBehaviour
     {
         /// <summary>
         /// Start Button
@@ -244,9 +244,9 @@ namespace Facemoji
             if (Input.GetKeyDown(KeyCode.Escape))
             {
 #if UNITY_5_3 || UNITY_5_3_OR_NEWER
-                SceneManager.LoadScene("DlibFaceLandmarkDetectorWithLive2DSample");
+                SceneManager.LoadScene("FacemojiStart");
 #else
-            Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
+                Application.LoadLevel("FacemojiStart");
 #endif
             }
 
@@ -444,9 +444,9 @@ namespace Facemoji
         public void OnBackButton()
         {
 #if UNITY_5_3 || UNITY_5_3_OR_NEWER
-            SceneManager.LoadScene("DlibFaceLandmarkDetectorWithLive2DSample");
+            SceneManager.LoadScene("FacemojiStart");
 #else
-            Application.LoadLevel("DlibFaceLandmarkDetectorWithLive2DSample");
+            Application.LoadLevel("FacemojiStart");
 #endif
         }
 

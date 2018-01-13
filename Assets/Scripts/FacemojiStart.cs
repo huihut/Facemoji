@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 namespace Facemoji
 {
-    [AddComponentMenu("DlibFaceLandmarkDetectorWithLive2DSample")]
-    public class DlibFaceLandmarkDetectorWithLive2DSample : MonoBehaviour
+    [AddComponentMenu("FacemojiStart")]
+    public class FacemojiStart : MonoBehaviour
     {
         bool isPress = false;
         float pressTimes = 0;
@@ -47,15 +47,24 @@ namespace Facemoji
             }
         }
 
-        public void OnWebCamTextureLive2DSample()
+        public void OnFaceTracking()
         {
-            #if UNITY_5_3 || UNITY_5_3_OR_NEWER
-            SceneManager.LoadScene ("WebCamTextureLive2DSample");
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("FaceTracking");
 #else
-            Application.LoadLevel ("WebCamTextureLive2DSample");
+            Application.LoadLevel ("FaceTracking");
 #endif
         }
-        
+
+        public void OnFacemojiAI()
+        {
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("FacemojiAI");
+#else
+            Application.LoadLevel("FacemojiAI");
+#endif
+        }
+
         public void OnExitButton()
         {
             Application.Quit();
