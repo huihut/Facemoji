@@ -18,6 +18,7 @@ namespace Facemoji
     /// <summary>
     /// FaceTracking, Use Dlib to detect face landmark and use Live2D model to track faces
     /// </summary>
+    [AddComponentMenu("Facemoji/FaceTracking")]
     [RequireComponent (typeof(WebCamTextureToMatHelper))]
     public class FaceTracking : MonoBehaviour
     {
