@@ -1,6 +1,6 @@
 # Facemoji
 
-A Unity project that detects facial expressions, converts them into emoji or cartoon images, and generates gif images or small videos.
+A Unity project, which has two modules. One is FaceTracking, which detects facial expressions, converts them into Live2D model, and generates gif images. The other is AI, which uses Turing Robot, Baidu ASR, and Baidu TTS to make a voice chat.
 
 ## Assets Library
 
@@ -12,6 +12,7 @@ A Unity project that detects facial expressions, converts them into emoji or car
 * [Live2D Cubism SDK](http://sites.cybernoids.jp/cubism-sdk2_e/unity_2-1)
 * [DlibFaceLandmarkDetectorWithLive2DSample](https://github.com/utibenkei/DlibFaceLandmarkDetectorWithLive2DSample)
 * [Recorder](https://github.com/Chman/Moments)
+* [TuringRobot](https://github.com/huihut/TuringRobot)
 
 ### Unofficial
 
