@@ -1,6 +1,8 @@
 # Facemoji
 
-A Unity project, which has two modules. One is FaceTracking, which detects facial expressions, converts them into Live2D model, and generates gif images. The other is AI, which uses Turing Robot, Iflytek IAT and Iflytek TTS to make a voice chat.
+A Unity project, which has two modules. 
+* One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif images. 
+* The other is **AI**, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat.
 
 ## Assets Library
 
