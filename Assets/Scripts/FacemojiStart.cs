@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 #endif
 
-namespace Facemoji
+namespace HuiHut.Facemoji
 {
     [AddComponentMenu("FacemojiStart")]
     public class FacemojiStart : MonoBehaviour
@@ -62,6 +62,24 @@ namespace Facemoji
             SceneManager.LoadScene("FacemojiAI");
 #else
             Application.LoadLevel("FacemojiAI");
+#endif
+        }
+
+        public void OnTTS()
+        {
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("TTS");
+#else
+            Application.LoadLevel("TTS");
+#endif
+        }
+
+        public void OnIAT()
+        {
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("IAT");
+#else
+            Application.LoadLevel("IAT");
 #endif
         }
 

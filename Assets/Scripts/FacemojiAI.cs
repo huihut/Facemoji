@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using HuiHut.Turing;
+using IFLYSpeech;
 
-namespace Facemoji
+namespace HuiHut.Facemoji
 {
     /// <summary>
     /// Facemoji AI，使用 Live2D 模型做的聊天机器人
@@ -54,6 +56,8 @@ namespace Facemoji
         /// </summary>
         private static List<string> robotLinks = new List<string>();
 
+        private TextAudioBehaiver textAudioBehaiver = new TextAudioBehaiver();
+
 
         // Use this for initialization
         void Start()
@@ -65,6 +69,8 @@ namespace Facemoji
 
             // 初始化图灵机器人
             turingRobot.initRobot(API_Key, userID);
+
+            //textAudioBehaiver.Awake();
         }
 
         // Update is called once per frame
@@ -101,7 +107,9 @@ namespace Facemoji
                 foreach (string Link in robotLinks)
                     testMessageText.text += ("\n" + Link);
             }
-            
+
+            // 朗PlayAudio读机器人回复的消息
+            textAudioBehaiver.PlayAudio(robotMessage);
         }
 
         public void OnBackButton()

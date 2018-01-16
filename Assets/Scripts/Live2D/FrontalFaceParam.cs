@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using DlibFaceLandmarkDetector;
 using OpenCVForUnity;
 
-namespace Facemoji
+namespace HuiHut.Facemoji
 {
     public class FrontalFaceParam : IDisposable
     {

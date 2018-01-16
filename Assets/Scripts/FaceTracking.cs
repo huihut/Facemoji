@@ -12,8 +12,9 @@ using UnityEngine.SceneManagement;
 using OpenCVForUnity;
 using DlibFaceLandmarkDetector;
 using DlibFaceLandmarkDetectorSample;
+using Moments;
 
-namespace Facemoji
+namespace HuiHut.Facemoji
 {
     /// <summary>
     /// FaceTracking, Use Dlib to detect face landmark and use Live2D model to track faces

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using Moments;
+using HuiHut.Facemoji;
 
-namespace Facemoji
+namespace Moments
 {
-    [RequireComponent(typeof(Recorder)), AddComponentMenu("Facemoji Record")]
+    [RequireComponent(typeof(Recorder)), AddComponentMenu("Record")]
     public class Record : MonoBehaviour
     {
         Recorder m_Recorder;
