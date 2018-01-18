@@ -28,7 +28,7 @@ A **Unity** project, which has two modules.
 * Create new Unity project (called `FacemojiDemo`)
 * Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
 * Copy `shape_predictor_68_face_landmarks.dat` to your `FacemojiDemo/Assets/StreamingAssets/`
-* Import `Facemoji_Plugins_Assets.unitypackage`
+* Import `Facemoji_Plugins_Assets_with_iflytek.unitypackage`
 * Build & Run
 
 ## Releases
