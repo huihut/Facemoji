@@ -23,7 +23,7 @@ A **Unity** project, which has two modules.
 
 ## Setup
 
-* Download `shape_predictor_68_face_landmarks.dat`(Facial Landmark Detector) and `Facemoji_Plugins_Assets.unitypackage`(Streamlined OpenCV, Dlib, Live2D Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
+* Download `shape_predictor_68_face_landmarks.dat`(Facial Landmark Detector) and `Facemoji_Plugins_Assets_with_iflytek.unitypackage`(Streamlined OpenCV, Dlib, Live2D and Iflytek Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
 * `git clone https://github.com/huihut/Facemoji.git`
 * Create new Unity project (called `FacemojiDemo`)
 * Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
