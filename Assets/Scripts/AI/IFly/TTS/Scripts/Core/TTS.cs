@@ -87,7 +87,7 @@ namespace IFLYSpeech.Interanl
         }
 
         /// <summary>
-        /// 把结构体转化为字节序列
+        /// 序列化结构体，把结构体转化为字节序列
         /// </summary>
         /// <param name="structure">被转化的结构体</param>
         /// <returns>返回字节序列</returns>
@@ -112,7 +112,8 @@ namespace IFLYSpeech.Interanl
         /// 把文字转化为声音,单路配置，一种语音
         /// </summary>
         /// <param name="speekText">要转化成语音的文字</param>
-        /// <param name="outWaveFlie">把声音转为文件，默认为不生产wave文件</param>
+        /// <param name="szParams">传入的参数</param>
+        /// <param name="outWaveFlie">转化成的语音文件，默认为不生产wave文件</param>
         public void Speak(string speekText, string szParams, string outWaveFlie)
         {
             byte[] bytes = null;
@@ -122,13 +123,13 @@ namespace IFLYSpeech.Interanl
                 sessionID = Marshal.PtrToStringAuto(MSPAPI.QTTSSessionBegin(szParams, ref ret));
                 if (ret != 0)
                 {
-                    if (ttsSpeakErrorEvent != null) ttsSpeakErrorEvent.Invoke("初始化TTS引会话错误，错误代码：" + ret);
+                    if (ttsSpeakErrorEvent != null) ttsSpeakErrorEvent.Invoke("初始化TTS会话错误，错误代码：" + ret);
                     return;
                 }
                 ret = MSPAPI.QTTSTextPut(sessionID, speekText, (uint)Encoding.Unicode.GetByteCount(speekText), string.Empty);
                 if (ret != 0)
                 {
-                    if (ttsSpeakErrorEvent != null) ttsSpeakErrorEvent.Invoke("向服务器发送数据，错误代码：" + ret);
+                    if (ttsSpeakErrorEvent != null) ttsSpeakErrorEvent.Invoke("向服务器发送TTS数据错误，错误代码：" + ret);
                     return;
                 }
                 IntPtr audio_data;
@@ -137,7 +138,7 @@ namespace IFLYSpeech.Interanl
                 using (MemoryStream ms = new MemoryStream())
                 {
                     ms.Write(new byte[44], 0, 44);
-                    //写44字节的空文件头
+                    // 写44字节的空文件头
                     while (synth_status == SynthStatus.MSP_TTS_FLAG_STILL_HAVE_DATA)
                     {
                         audio_data = MSPAPI.QTTSAudioGet(sessionID, ref audio_len, ref synth_status, ref ret);
@@ -150,19 +151,19 @@ namespace IFLYSpeech.Interanl
                             {
                                 if (ret != 0)
                                 {
-                                    if (ttsSpeakErrorEvent != null) ttsSpeakErrorEvent.Invoke("下载TTS文件错误，错误代码：" + ret);
+                                    if (ttsSpeakErrorEvent != null) ttsSpeakErrorEvent.Invoke("下载TTS音频文件错误，错误代码：" + ret);
                                     return;
                                 }
                                 break;
                             }
                         }
-                        Thread.Sleep(150);
+                        Thread.Sleep(150);      // 防止频繁占用CPU
                     }
                     System.Diagnostics.Debug.WriteLine("wav header");
-                    WAVE_Header header = getWave_Header((int)ms.Length - 44);     //创建wav文件头
-                    byte[] headerByte = StructToBytes(header);                         //把文件头结构转化为字节数组                      //写入文件头
-                    ms.Position = 0;                                                        //定位到文件头
-                    ms.Write(headerByte, 0, headerByte.Length);                             //写入文件头
+                    WAVE_Header header = getWave_Header((int)ms.Length - 44);     // 创建wav文件头
+                    byte[] headerByte = StructToBytes(header);                    // 把文件头结构转化为字节数组
+                    ms.Position = 0;                                              // 定位到文件头
+                    ms.Write(headerByte, 0, headerByte.Length);                   // 写入文件头
                     bytes = ms.ToArray();
                     ms.Close();
                 }
