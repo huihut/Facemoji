@@ -2,7 +2,7 @@
 
 A **Unity** project, which has two modules. 
 * One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif images. 
-* The other is **AI**, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat. (in branch [dev](https://github.com/huihut/Facemoji/tree/dev), developing...)
+* The other is **AI**, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat. (in branch **[dev](https://github.com/huihut/Facemoji/tree/dev)**, developing...)
 
 ## Assets Library
 
@@ -24,7 +24,7 @@ A **Unity** project, which has two modules.
 ## Setup
 
 * Download `shape_predictor_68_face_landmarks.dat`(Facial Landmark Detector) and `Facemoji_Plugins_Assets_with_iflytek.unitypackage`(Streamlined OpenCV, Dlib, Live2D and Iflytek Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
-* `git clone https://github.com/huihut/Facemoji.git`
+* `git clone -b dev https://github.com/huihut/Facemoji.git`
 * Create new Unity project (called `FacemojiDemo`)
 * Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
 * Copy `shape_predictor_68_face_landmarks.dat` to your `FacemojiDemo/Assets/StreamingAssets/`
