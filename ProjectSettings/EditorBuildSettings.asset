@@ -11,12 +11,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FaceTracking.unity
     guid: 7e9e2493053b8e248825558de3f709e7
-  - enabled: 1
-    path: Assets/Scenes/FacemojiAI.unity
-    guid: ad9f99460d78675438d165c0d3332d69
-  - enabled: 1
-    path: Assets/Scenes/Demo.unity
-    guid: 9548b17d7de60b54ca05aa701eaf294c
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 5d11ceceb1df24642b39a0b89df06614
