@@ -1,5 +1,10 @@
 # Facemoji version history
 
+## v1.4.1 - 2/7/2018
+
+* completed the FaceTracking.
+* update some directory structures and filenames.
+
 ## v1.4 - 11/23/2017
 
 * Optimized the model‘s transform.localScale and transform.position.
