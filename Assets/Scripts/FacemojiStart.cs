@@ -63,7 +63,11 @@ namespace HuiHut.Facemoji
 
         public void OnMenuButton()
         {
-            // Menu
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("Menu");
+#else
+            Application.LoadLevel("Menu");
+#endif
         }
     }
 }

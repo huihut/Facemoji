@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.Runtime.InteropServices;
 using System.IO;
-using UnityEngine.UI;
 
 #if UNITY_5_3 || UNITY_5_3_OR_NEWER
 using UnityEngine.SceneManagement;
@@ -24,6 +21,20 @@ namespace HuiHut.Facemoji
     public class FaceTracking : MonoBehaviour
     {
         /// <summary>
+        /// All Live2D Texture
+        /// </summary>
+        private enum WhichTexture
+        {
+            shizuku = 1,
+            haru = 2,
+        };
+
+        /// <summary>
+        /// The selected Live2D Texture now.(Default shizuku)
+        /// </summary>
+        private WhichTexture selectedTexture = WhichTexture.shizuku;
+
+        /// <summary>
         /// Start Button
         /// </summary>
         public static GameObject startBtn;
@@ -37,16 +48,6 @@ namespace HuiHut.Facemoji
         /// live2DModel.transform.localScale
         /// </summary>
         public float modelScale = 0.9f;
-
-        /// <summary>
-        /// The colors.
-        /// </summary>
-        //Color32[] colors;
-
-        /// <summary>
-        /// The texture.
-        /// </summary>
-        //Texture2D texture;
 
         /// <summary>
         /// The web cam texture to mat helper.
@@ -69,16 +70,6 @@ namespace HuiHut.Facemoji
         FrontalFaceParam frontalFaceParam;
 
         /// <summary>
-        /// Currently a series of facial features.
-        /// </summary>
-        //private List<Vector2> currentFacePoints;
-
-        /// <summary>
-        /// Hide the camera image.
-        /// </summary>
-        //private bool isHideCameraImage = true;
-
-        /// <summary>
         /// The shape_predictor_68_face_landmarks_dat_filepath.
         /// </summary>
         private string shape_predictor_68_face_landmarks_dat_filepath;
@@ -86,92 +77,101 @@ namespace HuiHut.Facemoji
         /// <summary>
         /// Model file path.
         /// </summary>
-        private string shizuku_moc_filepath;
-        private string shizuku_physics_filepath;
-        private string shizuku_pose_filepath;
+        private string moc_filepath;
+        private string physics_filepath;
+        private string pose_filepath;
         private string[] texture_filepath = new string[6];
-        
+
 
         // Use this for initialization
-        void Start ()
+        void Start()
         {
             startBtn = GameObject.Find("StartButton");
             finishBtn = GameObject.Find("FinishButton");
             startBtn.SetActive(true);
             finishBtn.SetActive(false);
 
-            webCamTextureToMatHelper = gameObject.GetComponent<WebCamTextureToMatHelper> ();
+            webCamTextureToMatHelper = gameObject.GetComponent<WebCamTextureToMatHelper>();
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             webCamTextureToMatHelper.flipHorizontal = true;
             StartCoroutine(getFilePathCoroutine());
 #else
             // FaceLandmark model filepath
-            shape_predictor_68_face_landmarks_dat_filepath = DlibFaceLandmarkDetector.Utils.getFilePath ("shape_predictor_68_face_landmarks.dat");
+            shape_predictor_68_face_landmarks_dat_filepath = DlibFaceLandmarkDetector.Utils.getFilePath("shape_predictor_68_face_landmarks.dat");
 
-            // Facemoji model filepath
-            shizuku_moc_filepath = OpenCVForUnity.Utils.getFilePath ("shizuku/shizuku.moc.bytes");
-            shizuku_physics_filepath = OpenCVForUnity.Utils.getFilePath ("shizuku/shizuku.physics.json");
-            shizuku_pose_filepath = OpenCVForUnity.Utils.getFilePath ("shizuku/shizuku.pose.json");
-            for (int i = 0; i < texture_filepath.Length; i++) {
-                texture_filepath [i] = OpenCVForUnity.Utils.getFilePath ("shizuku/shizuku.1024/texture_0" + i + ".png");
-            }
-
-            Run ();
-            #endif
+            // Load Texture filepath
+            LoadTexture();
+            
+            Run();
+#endif
         }
 
-        private IEnumerator getFilePathCoroutine ()
+        private void LoadTexture()
         {
-            var getFilePathAsync_shape_predictor_68_face_landmarks_dat_filepath_Coroutine = StartCoroutine (DlibFaceLandmarkDetector.Utils.getFilePathAsync ("shape_predictor_68_face_landmarks.dat", (result) => {
-                shape_predictor_68_face_landmarks_dat_filepath = result;
-            }));
-            var getFilePathAsync_shizuku_moc_filepath_Coroutine = StartCoroutine (DlibFaceLandmarkDetector.Utils.getFilePathAsync ("shizuku/shizuku.moc.bytes", (result) => {
-                shizuku_moc_filepath = result;
-            }));
-            var getFilePathAsync_shizuku_physics_filepath_Coroutine = StartCoroutine (DlibFaceLandmarkDetector.Utils.getFilePathAsync ("shizuku/shizuku.physics.json", (result) => {
-                shizuku_physics_filepath = result;
-            }));
-            var getFilePathAsync_shizuku_pose_filepath_Coroutine = StartCoroutine (DlibFaceLandmarkDetector.Utils.getFilePathAsync ("shizuku/shizuku.pose.json", (result) => {
-                shizuku_pose_filepath = result;
-            }));
-
-            yield return getFilePathAsync_shape_predictor_68_face_landmarks_dat_filepath_Coroutine;
-            yield return getFilePathAsync_shizuku_moc_filepath_Coroutine;
-            yield return getFilePathAsync_shizuku_physics_filepath_Coroutine;
-            yield return getFilePathAsync_shizuku_pose_filepath_Coroutine;
-
-            for (int i = 0; i < texture_filepath.Length; i++) {
-                Debug.Log ("tex");
-                yield return StartCoroutine (DlibFaceLandmarkDetector.Utils.getFilePathAsync ("shizuku/shizuku.1024/texture_0" + i + ".png", (result) => {
-                    texture_filepath [i] = result;
-                }));
+            // Load model filepath
+            switch (selectedTexture)
+            {
+                case WhichTexture.haru:
+                    {
+                        // Load haru model file
+                        moc_filepath = OpenCVForUnity.Utils.getFilePath("haru/haru_01.moc.bytes");
+                        physics_filepath = OpenCVForUnity.Utils.getFilePath("haru/haru.physics.json");
+                        pose_filepath = OpenCVForUnity.Utils.getFilePath("haru/haru.pose.json");
+                        for (int i = 0; i < texture_filepath.Length; i++)
+                        {
+                            texture_filepath[i] = OpenCVForUnity.Utils.getFilePath("haru/haru_01.1024/texture_0" + i + ".png");
+                        }
+                        break;
+                    }
+                case WhichTexture.shizuku:
+                    {
+                        // Load shizuku model file
+                        moc_filepath = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.moc.bytes");
+                        physics_filepath = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.physics.json");
+                        pose_filepath = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.pose.json");
+                        for (int i = 0; i < texture_filepath.Length; i++)
+                        {
+                            texture_filepath[i] = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.1024/texture_0" + i + ".png");
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        // Load shizuku model file
+                        moc_filepath = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.moc.bytes");
+                        physics_filepath = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.physics.json");
+                        pose_filepath = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.pose.json");
+                        for (int i = 0; i < texture_filepath.Length; i++)
+                        {
+                            texture_filepath[i] = OpenCVForUnity.Utils.getFilePath("shizuku/shizuku.1024/texture_0" + i + ".png");
+                        }
+                        break;
+                    }
             }
 
-            Run ();
+            live2DModel.textureFiles = new Texture2D[texture_filepath.Length];
+            for (int i = 0; i < texture_filepath.Length; i++)
+            {
+                if (string.IsNullOrEmpty(texture_filepath[i]))
+                    continue;
+
+                Texture2D tex = new Texture2D(2, 2);
+                tex.LoadImage(File.ReadAllBytes(texture_filepath[i]));
+                live2DModel.textureFiles[i] = tex;
+            }
+            if (!string.IsNullOrEmpty(moc_filepath))
+                live2DModel.setMocFileFromBytes(File.ReadAllBytes(moc_filepath));
+            if (!string.IsNullOrEmpty(physics_filepath))
+                live2DModel.setPhysicsFileFromBytes(File.ReadAllBytes(physics_filepath));
+            if (!string.IsNullOrEmpty(pose_filepath))
+                live2DModel.setPoseFileFromBytes(File.ReadAllBytes(pose_filepath));
+
         }
 
         private void Run ()
         {
             Debug.Log ("Run");
-
-            // Load the textureFiles
-            live2DModel.textureFiles = new Texture2D[texture_filepath.Length];
-            for (int i = 0; i < texture_filepath.Length; i++) {
-                if (string.IsNullOrEmpty (texture_filepath [i]))
-                    continue;
-
-                Texture2D tex = new Texture2D (2, 2);
-                tex.LoadImage (File.ReadAllBytes (texture_filepath [i]));
-                live2DModel.textureFiles [i] = tex;
-            }
-            if (!string.IsNullOrEmpty (shizuku_moc_filepath))
-                live2DModel.setMocFileFromBytes (File.ReadAllBytes (shizuku_moc_filepath));
-            if (!string.IsNullOrEmpty (shizuku_physics_filepath))
-                live2DModel.setPhysicsFileFromBytes (File.ReadAllBytes (shizuku_physics_filepath));
-            if (!string.IsNullOrEmpty (shizuku_pose_filepath))
-                live2DModel.setPoseFileFromBytes (File.ReadAllBytes (shizuku_pose_filepath));
-
 
             faceLandmarkDetector = new FaceLandmarkDetector (shape_predictor_68_face_landmarks_dat_filepath);
             frontalFaceParam = new FrontalFaceParam ();
@@ -192,10 +192,7 @@ namespace HuiHut.Facemoji
             Debug.Log ("OnWebCamTextureToMatHelperInited");
 
             Mat webCamTextureMat = webCamTextureToMatHelper.GetMat ();
-
-            //colors = new Color32[webCamTextureMat.cols () * webCamTextureMat.rows ()];
-            //texture = new Texture2D (webCamTextureMat.cols (), webCamTextureMat.rows (), TextureFormat.RGBA32, false);
-
+            
             gameObject.transform.localScale = new Vector3 (webCamTextureMat.cols (), webCamTextureMat.rows (), 1);
 
             Debug.Log ("Screen.width " + Screen.width + " Screen.height " + Screen.height + " Screen.orientation " + Screen.orientation);
@@ -215,10 +212,7 @@ namespace HuiHut.Facemoji
                 // Set live2DModel localScale
                 live2DModel.transform.localScale = new Vector3 (Camera.main.orthographicSize * modelScale, Camera.main.orthographicSize * modelScale, 1);
             }
-
-            // Renderer: makes texture appear on the screen
-            //gameObject.GetComponent<Renderer> ().material.mainTexture = texture;
-
+            
         }
 
         /// <summary>
@@ -235,8 +229,6 @@ namespace HuiHut.Facemoji
         /// </summary>
         public void OnWebCamTextureToMatHelperErrorOccurred ()
         {
-            //Debug.Log ("OnWebCamTextureToMatHelperErrorOccurred " + webCamTextureToMatHelper.GetErrorCode());
-
             Debug.Log("OnWebCamTextureToMatHelperErrorOccurred");
         }
 
@@ -261,9 +253,7 @@ namespace HuiHut.Facemoji
                 List<UnityEngine.Rect> detectResult = faceLandmarkDetector.Detect ();
 
                 foreach (var rect in detectResult) {
-
-                    //OpenCVForUnityUtils.DrawFaceRect (rgbaMat, rect, new Scalar (255, 0, 0, 255), 2);
-
+                    
                     List<Vector2> points = faceLandmarkDetector.DetectLandmark (rect);
 
                     if (points.Count > 0) {
@@ -275,18 +265,6 @@ namespace HuiHut.Facemoji
                         break;
                     }
                 }
-
-                //// Draw faces and rectangles
-                //if (isHideCameraImage)
-                //    Imgproc.rectangle(rgbaMat, new Point(0, 0), new Point(rgbaMat.width(), rgbaMat.height()), new Scalar(0, 0, 0, 255), -1);
-
-                //if (currentFacePoints != null)
-                //    OpenCVForUnityUtils.DrawFaceLandmark(rgbaMat, currentFacePoints, new Scalar(0, 255, 0, 255), 2);
-
-                //// Mat size
-                //Imgproc.putText(rgbaMat, "W:" + rgbaMat.width() + " H:" + rgbaMat.height() + " SO:" + Screen.orientation, new Point(5, rgbaMat.rows() - 10), Core.FONT_HERSHEY_SIMPLEX, 0.5, new Scalar(255, 255, 255, 255), 1, Imgproc.LINE_AA, false);
-
-                //OpenCVForUnity.Utils.matToTexture2D(rgbaMat, texture, colors);
             }
 
         }
@@ -468,7 +446,6 @@ namespace HuiHut.Facemoji
                 //Start recording
                 Record.isRecording = true;
                 finishBtn.SetActive(true);
-                //Global.isStartRecord = true;
             }
         }
 
@@ -480,9 +457,26 @@ namespace HuiHut.Facemoji
                 //Finish recording
                 Record.isRecording = false;
                 startBtn.SetActive(true);
-                //Global.isFinishRecord = true;
             }
         }
-        
+
+        public void OnShizukuButton()
+        {
+            if(selectedTexture != WhichTexture.shizuku)
+            {
+                selectedTexture = WhichTexture.shizuku;
+                LoadTexture();
+            }
+        }
+
+        public void OnHaruButton()
+        {
+            if (selectedTexture != WhichTexture.haru)
+            {
+                selectedTexture = WhichTexture.haru;
+                LoadTexture();
+            }
+        }
+
     }
 }

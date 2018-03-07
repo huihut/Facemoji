@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FaceTracking.unity
     guid: 7e9e2493053b8e248825558de3f709e7
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 46ef5dadeac087341bbf738cb358fc84
