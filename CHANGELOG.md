@@ -1,5 +1,14 @@
 # Facemoji version history
 
+## v1.5.0 - 3/7/2018
+
+* AI module completed (using Turing Robot, Iflytek IAT and Iflytek TTS to make a voice chat).
+* FaceTracking and AI merged into one scene.
+* Add a menu to choose your language and speaker.
+* Added a Live2D texture "haru" and can switch texture
+* Remove the back & switch camera button, add send & voice button.
+* Change the record button & text.
+
 ## v1.4.1 - 2/7/2018
 
 * completed the FaceTracking.

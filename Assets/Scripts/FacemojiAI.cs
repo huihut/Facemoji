@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using HuiHut.Turing;
-using IFLYSpeech;
+using HuiHut.IFlyVoice;
 
 namespace HuiHut.Facemoji
 {
@@ -19,7 +19,7 @@ namespace HuiHut.Facemoji
         /// <summary>
         /// 图灵机器人
         /// </summary>
-        private TuringRobot turingRobot = new TuringRobot();
+        private static TuringRobot turingRobot = new TuringRobot();
 
         /// <summary>
         /// 图灵机器人API Key
@@ -30,17 +30,7 @@ namespace HuiHut.Facemoji
         /// 随机生成用户ID，用于关联上下文语境
         /// </summary>
         private string userID = new System.Random().Next(0, int.MaxValue).ToString();
-
-        ///// <summary>
-        ///// Start Button
-        ///// </summary>
-        //public static GameObject inputField;
-
-        /// <summary>
-        /// Finish Button
-        /// </summary>
-        private Text testMessageText;
-
+        
         /// <summary>
         /// 用户输入消息
         /// </summary>
@@ -56,21 +46,31 @@ namespace HuiHut.Facemoji
         /// </summary>
         private static List<string> robotLinks = new List<string>();
 
-        private TextAudioBehaiver textAudioBehaiver = new TextAudioBehaiver();
+        /// <summary>
+        /// 机器人回复消息、录制消息在界面上的显示Label
+        /// </summary>
+        public GameObject testMessageLabel;
+
+        /// <summary>
+        /// testMessageLabel的文本内容
+        /// </summary>
+        public static Text testMessageText;
 
 
         // Use this for initialization
         void Start()
         {
-            testMessageText = GameObject.Find("TestMessageText").GetComponent<Text>();
+            // 设置信息标签（messageLabel）位于屏幕偏下位置
+            testMessageLabel.transform.Translate(new Vector3(0, - 2 * Screen.height / 3 + 50, 0));
 
+            testMessageText = testMessageLabel.GetComponent<Text>();
+            
             // 使用设备唯一标识
             userID = SystemInfo.deviceUniqueIdentifier;
 
             // 初始化图灵机器人
             turingRobot.initRobot(API_Key, userID);
-
-            //textAudioBehaiver.Awake();
+            
         }
 
         // Update is called once per frame
@@ -86,30 +86,65 @@ namespace HuiHut.Facemoji
             }
         }
 
+        // 发送消息给机器人
+        public static void SendToRobot(string userMessage)
+        {
+            if(!userMessage.Equals(""))
+            {
+                // 用户消息传入机器人，获取机器人回复信息、回复链接
+                turingRobot.Chat(userMessage, ref robotMessage, ref robotLinks);
+
+                //正常的返回结果
+                if (robotLinks.Count == 0)  // 机器人回复的消息无链接
+                {
+                    // 把信息显示在测试的text中
+                    testMessageText.text = robotMessage;
+                }
+                else  // 机器人回复的消息有链接
+                {
+                    // 把信息显示在测试的text中
+                    testMessageText.text = robotMessage;
+                    foreach (string Link in robotLinks)
+                        testMessageText.text += ("\n" + Link);
+                }
+
+                if(!string.IsNullOrEmpty(Menu.speakerLanguageSelected))
+                {
+                    // 朗读机器人回复的消息
+                    IFlyVoice.IFlyVoice.startSpeaking(robotMessage, Menu.speakerLanguageSelected);
+                }
+                else
+                {
+                    "Please choose a speaker!".showAsToast();
+                }
+            }
+            else
+            {
+                "The message sent is empty!".showAsToast();
+            }
+        }
+
+
         public void OnUserMessageSendButton()
         {
             // 获取用户输入的内容
             userMessage = GameObject.Find("userMessageInputField").GetComponent<InputField>().text;
+            
+            // 发送消息给机器人
+            SendToRobot(userMessage);
+        }
 
-            // 用户消息传入机器人，获取机器人回复信息、回复链接
-            turingRobot.Chat(userMessage, ref robotMessage, ref robotLinks);
-
-            //正常的返回结果
-            if (robotLinks.Count == 0)  // 机器人回复的消息无链接
+        public void OnSpeakButton()
+        {
+            if (!string.IsNullOrEmpty(Menu.userLanguageSelected))
             {
-                // 把信息显示在测试的text中
-                testMessageText.text = robotMessage;
+                // 语音识别，识别后自动发送消息给机器人
+                IFlyVoice.IFlyVoice.startRecognize(Menu.userLanguageSelected);
             }
-            else  // 机器人回复的消息有链接
+            else
             {
-                // 把信息显示在测试的text中
-                testMessageText.text = robotMessage;
-                foreach (string Link in robotLinks)
-                    testMessageText.text += ("\n" + Link);
+                "Please choose your language!".showAsToast();
             }
-
-            // 朗PlayAudio读机器人回复的消息
-            textAudioBehaiver.PlayAudio(robotMessage);
         }
 
         public void OnBackButton()
@@ -120,6 +155,7 @@ namespace HuiHut.Facemoji
             Application.LoadLevel("FacemojiStart");
 #endif
         }
+
     }
 }
 

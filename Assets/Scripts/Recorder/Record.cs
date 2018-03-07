@@ -97,40 +97,20 @@ namespace Moments
         }
 
         void OnGUI()
-        {       
-            Rect rect = new Rect(0, 110, Screen.width, Screen.height);
+        {
+            if (m_Recorder.State != RecorderState.Recording || !string.IsNullOrEmpty(m_LastFile))
+            {
+                FacemojiAI.testMessageText.text = "Recorder State : " + m_Recorder.State.ToString();
 
-            // GUIStyle -> fontSize
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = new Color(255, 255, 255);
-            style.fontSize = 24;
+                if (m_IsSaving)
+                    FacemojiAI.testMessageText.text += "\nProgress Report : " + m_Progress.ToString("F2") + "%";
 
-            GUIStyle styleBigger = new GUIStyle();
-            styleBigger.normal.textColor = new Color(255, 255, 255);
-            styleBigger.fontSize = 35;
-
-            // GUILayout -> Label
-            GUILayout.BeginArea(rect);
-            GUILayout.Width(Screen.width);
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(10f);
-            GUILayout.BeginVertical();
-            GUILayout.Space(10f);
-
-            //GUILayout.Label("Press [StartButton] to export the buffered frames to a gif file.", style);
-            GUILayout.Label("Recorder State : " + m_Recorder.State.ToString(), styleBigger);
-
-            if (m_IsSaving)
-                GUILayout.Label("Progress Report : " + m_Progress.ToString("F2") + "%", styleBigger);
-
-            if (!string.IsNullOrEmpty(m_LastFile))
-                GUILayout.Label("Save to : \n" + m_LastFile, style, GUILayout.MaxWidth(Screen.width), GUILayout.ExpandWidth(false));
-
-            GUILayout.EndVertical();
-            GUILayout.EndHorizontal();
-            GUILayout.EndArea();
+                if (!string.IsNullOrEmpty(m_LastFile))
+                {
+                    FacemojiAI.testMessageText.text = "Recording finished!";
+                    m_LastFile = string.Empty;
+                }
+            }
         }
-
     }
-
 }

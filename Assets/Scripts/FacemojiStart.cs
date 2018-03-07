@@ -56,33 +56,6 @@ namespace HuiHut.Facemoji
 #endif
         }
 
-        public void OnFacemojiAI()
-        {
-#if UNITY_5_3 || UNITY_5_3_OR_NEWER
-            SceneManager.LoadScene("FacemojiAI");
-#else
-            Application.LoadLevel("FacemojiAI");
-#endif
-        }
-
-        public void OnTTS()
-        {
-#if UNITY_5_3 || UNITY_5_3_OR_NEWER
-            SceneManager.LoadScene("TTS");
-#else
-            Application.LoadLevel("TTS");
-#endif
-        }
-
-        public void OnIAT()
-        {
-#if UNITY_5_3 || UNITY_5_3_OR_NEWER
-            SceneManager.LoadScene("IAT");
-#else
-            Application.LoadLevel("IAT");
-#endif
-        }
-
         public void OnExitButton()
         {
             Application.Quit();
@@ -90,7 +63,11 @@ namespace HuiHut.Facemoji
 
         public void OnMenuButton()
         {
-            // Menu
+#if UNITY_5_3 || UNITY_5_3_OR_NEWER
+            SceneManager.LoadScene("Menu");
+#else
+            Application.LoadLevel("Menu");
+#endif
         }
     }
 }
