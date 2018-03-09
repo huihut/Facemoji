@@ -22,17 +22,17 @@
 ### 网盘
 
 * [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
+* [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 
 ## Releases
 
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
 * [Drive.Google . Facemoji/Platform](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [Pan.Baidu . Facemoji/Platform](http://pan.baidu.com/s/1eSnKtoQ)
+* [Pan.Baidu . Facemoji/Platform](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 
 ## 制作
 
-1. 从 [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) 或者 [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)下载 `shape_predictor_68_face_landmarks.dat`（人脸特征点检测器） 和 `Facemoji_Plugins_Assets_1.5.0.unitypackage` （精简的 OpenCV, Dlib, Live2D 和 Iflytek 库） 
+1. 从 [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) 或者 [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)下载 `shape_predictor_68_face_landmarks.dat`（人脸特征点检测器） 和 `Facemoji_Plugins_Assets_1.5.0.unitypackage` （精简的 OpenCV, Dlib, Live2D 和 Iflytek 库） 
 2. `git clone https://github.com/huihut/Facemoji.git`
 2. 创建一个新的Unity项目，命名为`FacemojiDemo`
 3. 复制 `Facemoji/Assets` 和 `Facemoji/ProjectSettings` 到你的项目 (`FacemojiDemo/`)
