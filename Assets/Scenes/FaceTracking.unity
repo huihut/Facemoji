@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
+    m_Left: 20
     m_Right: 0
     m_Top: 20
     m_Bottom: 0
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
-    m_Right: 10
+    m_Right: 20
     m_Top: 20
     m_Bottom: 0
   m_ChildAlignment: 2
@@ -2358,6 +2358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   API_Key: 2ee6e84a755b4ac2b5b2cc25d992b03a
   testMessageLabel: {fileID: 934188440}
+  userMessageInputField: {fileID: 704806759}
 --- !u!1 &2016547706
 GameObject:
   m_ObjectHideFlags: 0

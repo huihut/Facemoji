@@ -17,6 +17,21 @@ namespace HuiHut.Facemoji
     public class FacemojiAI : MonoBehaviour
     {
         /// <summary>
+        /// 机器人回复消息、录制消息在界面上的显示Label
+        /// </summary>
+        public GameObject testMessageLabel;
+
+        /// <summary>
+        /// 用户消息的输入框
+        /// </summary>
+        public InputField userMessageInputField;
+
+        /// <summary>
+        /// testMessageLabel的文本内容
+        /// </summary>
+        public static Text testMessageText;
+
+        /// <summary>
         /// 图灵机器人
         /// </summary>
         private static TuringRobot turingRobot = new TuringRobot();
@@ -45,18 +60,7 @@ namespace HuiHut.Facemoji
         /// 机器人返回链接列表
         /// </summary>
         private static List<string> robotLinks = new List<string>();
-
-        /// <summary>
-        /// 机器人回复消息、录制消息在界面上的显示Label
-        /// </summary>
-        public GameObject testMessageLabel;
-
-        /// <summary>
-        /// testMessageLabel的文本内容
-        /// </summary>
-        public static Text testMessageText;
-
-
+        
         // Use this for initialization
         void Start()
         {
@@ -128,8 +132,11 @@ namespace HuiHut.Facemoji
         public void OnUserMessageSendButton()
         {
             // 获取用户输入的内容
-            userMessage = GameObject.Find("userMessageInputField").GetComponent<InputField>().text;
-            
+            userMessage = userMessageInputField.text;
+
+            // 清空输入框
+            userMessageInputField.text = string.Empty;
+
             // 发送消息给机器人
             SendToRobot(userMessage);
         }
