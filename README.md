@@ -2,7 +2,8 @@
 
 **A voice chatbot that can imitate your expression.**
 
-This is a **Unity** project (just for Android now), which has two modules. 
+This is a **Unity** project (just for Android now), which has two modules.
+
 * One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif images. 
 * The other is **AI** ~~(chatbot)~~, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat.
 
