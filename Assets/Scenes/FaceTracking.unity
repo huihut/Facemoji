@@ -2356,9 +2356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d9aa5bb22c6a04795c4d10afeea9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  API_Key: 2ee6e84a755b4ac2b5b2cc25d992b03a
   testMessageLabel: {fileID: 934188440}
   userMessageInputField: {fileID: 704806759}
+  API_Key: 2ee6e84a755b4ac2b5b2cc25d992b03a
 --- !u!1 &2016547706
 GameObject:
   m_ObjectHideFlags: 0

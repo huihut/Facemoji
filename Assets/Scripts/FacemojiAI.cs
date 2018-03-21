@@ -39,7 +39,7 @@ namespace HuiHut.Facemoji
         /// <summary>
         /// 图灵机器人API Key
         /// </summary>
-        public string API_Key = @"2ee6e84a755b4ac2b5b2cc25d992b03a";
+        private string API_Key = @"2ee6e84a755b4ac2b5b2cc25d992b03a";
 
         /// <summary>
         /// 随机生成用户ID，用于关联上下文语境
