@@ -40,8 +40,7 @@ This is a **Unity** project (just for Android now), which has two modules.
 * Create new Unity project (called `FacemojiDemo`)
 * Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
 * Copy `shape_predictor_68_face_landmarks.dat` to your `FacemojiDemo/Assets/StreamingAssets/`
-* Import `Facemoji_Plugins_Assets_1.5.0.unitypackage`, The directory structure is:
-    ![](Images/FacemojiDirectoryStructure.png)
+* Import `Facemoji_Plugins_Assets_1.5.0.unitypackage`
 * Select Android platform
 * Build & Run
 
@@ -102,3 +101,7 @@ She will chat in English later.
 * Wink ! （放电！）
     
     ![](Images/GifCapture-Spark.gif)
+
+## License
+
+[GPL v3.0](https://github.com/huihut/Facemoji/blob/master/LICENSE)
