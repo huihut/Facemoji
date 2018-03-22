@@ -1,6 +1,9 @@
 # Facemoji
 
-A **Unity** project (just for Android now), which has two modules. 
+**A voice chatbot that can imitate your expression.**
+
+This is a **Unity** project (just for Android now), which has two modules.
+
 * One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif images. 
 * The other is **AI** ~~(chatbot)~~, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat.
 
@@ -21,17 +24,18 @@ A **Unity** project (just for Android now), which has two modules.
 ### Unofficial
 
 * [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
+* [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 
 ## Releases
 
+* [Google Play . Facemoji 废萌](https://play.google.com/store/apps/details?id=com.huihut.facemoji)
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
 * [Drive.Google . Facemoji/Platform](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [Pan.Baidu . Facemoji/Platform](http://pan.baidu.com/s/1eSnKtoQ)
+* [Pan.Baidu . Facemoji/Platform](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 
 ## Setup
 
-* Download `shape_predictor_68_face_landmarks.dat`(Facial Landmark Detector) and `Facemoji_Plugins_Assets_1.5.0.unitypackage`(Streamlined OpenCV, Dlib, Live2D and Iflytek Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](http://pan.baidu.com/s/1eSnKtoQ)
+* Download `shape_predictor_68_face_landmarks.dat`(Facial Landmark Detector) and `Facemoji_Plugins_Assets_1.5.0.unitypackage`(Streamlined OpenCV, Dlib, Live2D and Iflytek Assets Library) from [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-) or [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 * `git clone https://github.com/huihut/Facemoji.git`
 * Create new Unity project (called `FacemojiDemo`)
 * Copy `Facemoji/Assets` and `Facemoji/ProjectSettings` to your unity project (`FacemojiDemo/`)
