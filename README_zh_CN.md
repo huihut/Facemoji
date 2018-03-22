@@ -4,27 +4,10 @@
 
 这是一个**Unity**项目（暂时只适配Android），有两个模块：
 
-* 模块一是**实时人脸卡通化（FaceTracking）**，使用**OpenCV**和**Dlib**检测面部表情，并实时转化为**Live2D**模型，然后可录制成gif图；
-* 模块二是**AI人工智能** ~~（聊天机器人）~~ 使用**图灵机器人**、**讯飞IAT语音听写**、**讯飞TTS语音合成**进行语音聊天。
+* 模块一是**实时人脸卡通化（FaceTracking）**，使用 [OpenCV](https://enoxsoftware.com/opencvforunity/)和 [Dlib](https://enoxsoftware.com/dlibfacelandmarkdetector/) 检测面部表情，并实时转化为 [Live2D](http://sites.cybernoids.jp/cubism-sdk2_e/unity_2-1) 模型，然后可 [录制](https://github.com/Chman/Moments) gif图；
+* 模块二是**AI人工智能** ~~（聊天机器人）~~ 使用 [图灵机器人](https://github.com/huihut/TuringRobot) 、[讯飞IAT语音听写](http://www.xfyun.cn/services/voicedictation)、 [讯飞TTS语音合成](http://www.xfyun.cn/services/online_tts) 进行语音聊天。
 
-[English README.md](README.md)
-
-## 资源库
-
-### 官方
-
-* [OpenCVForUnity](https://enoxsoftware.com/opencvforunity/)
-* [DlibFaceLandmarkDetector](https://enoxsoftware.com/dlibfacelandmarkdetector/)
-* [shape_predictor_68_face_landmarks.dat.bz2](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
-* [Live2D Cubism SDK](http://sites.cybernoids.jp/cubism-sdk2_e/unity_2-1)
-* [DlibFaceLandmarkDetectorWithLive2DSample](https://github.com/utibenkei/DlibFaceLandmarkDetectorWithLive2DSample)
-* [Recorder](https://github.com/Chman/Moments)
-* [TuringRobot](https://github.com/huihut/TuringRobot)
-
-### 网盘
-
-* [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
+[English . README.md](README.md)
 
 ## 下载
 

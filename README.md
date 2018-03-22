@@ -4,27 +4,10 @@
 
 This is a **Unity** project (just for Android now), which has two modules.
 
-* One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif. 
-* The other is **AI** ~~(chatbot)~~, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat.
+* One is **FaceTracking**, which using [OpenCV](https://enoxsoftware.com/opencvforunity/) and [Dlib](https://enoxsoftware.com/dlibfacelandmarkdetector/) to detects facial expressions, converts them into [Live2D](http://sites.cybernoids.jp/cubism-sdk2_e/unity_2-1) model, and [record](https://github.com/Chman/Moments) gif. 
+* The other is **AI** ~~(chatbot)~~, which uses [Turing Robot](https://github.com/huihut/TuringRobot), [Iflytek IAT](http://www.xfyun.cn/services/voicedictation) and [Iflytek TTS](http://www.xfyun.cn/services/online_tts) to make a voice chat.
 
 [简体中文 . README_zh_CN.md](README_zh_CN.md)
-
-## Assets Library
-
-### Official
-
-* [OpenCVForUnity](https://enoxsoftware.com/opencvforunity/)
-* [DlibFaceLandmarkDetector](https://enoxsoftware.com/dlibfacelandmarkdetector/)
-* [shape_predictor_68_face_landmarks.dat.bz2](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
-* [Live2D Cubism SDK](http://sites.cybernoids.jp/cubism-sdk2_e/unity_2-1)
-* [DlibFaceLandmarkDetectorWithLive2DSample](https://github.com/utibenkei/DlibFaceLandmarkDetectorWithLive2DSample)
-* [Recorder](https://github.com/Chman/Moments)
-* [TuringRobot](https://github.com/huihut/TuringRobot)
-
-### Unofficial
-
-* [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
-* [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 
 ## Releases
 
