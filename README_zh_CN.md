@@ -26,7 +26,7 @@
 * [Drive.Google](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
 * [Pan.Baidu](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)
 
-## Releases下载
+## 下载
 
 * [Google Play . Facemoji 废萌](https://play.google.com/store/apps/details?id=com.huihut.facemoji)
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
@@ -40,8 +40,7 @@
 2. 创建一个新的Unity项目，命名为`FacemojiDemo`
 3. 复制 `Facemoji/Assets` 和 `Facemoji/ProjectSettings` 到你的项目 (`FacemojiDemo/`)
 4. 把`shape_predictor_68_face_landmarks.dat`复制到`FacemojiDemo/Assets/StreamingAssets/`
-5. 导入`Facemoji_Plugins_Assets_1.5.0.unitypackage`。导入后的文件结构如下：
-    ![](Images/FacemojiDirectoryStructure.png)
+5. 导入`Facemoji_Plugins_Assets_1.5.0.unitypackage`
 6. 转换平台到Android（其他平台未适配）
 7. Build & Run
 
@@ -98,3 +97,7 @@
 * Wink ! （放电！）
     
     ![](Images/GifCapture-Spark.gif)
+
+## License
+
+[GPL v3.0](https://github.com/huihut/Facemoji/blob/master/LICENSE)
