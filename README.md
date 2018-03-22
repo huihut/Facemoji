@@ -4,7 +4,7 @@
 
 This is a **Unity** project (just for Android now), which has two modules.
 
-* One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif images. 
+* One is **FaceTracking**, which using **OpenCV** and **Dlib** to detects facial expressions, converts them into **Live2D** model, and generates gif. 
 * The other is **AI** ~~(chatbot)~~, which uses **Turing Robot**, **Iflytek IAT** and **Iflytek TTS** to make a voice chat.
 
 [简体中文 . README_zh_CN.md](README_zh_CN.md)
