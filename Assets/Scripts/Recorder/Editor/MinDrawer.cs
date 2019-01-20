@@ -32,7 +32,7 @@ namespace MomentsEditor
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
-			MinAttribute attribute = (MinAttribute)base.attribute;
+			Moments.MinAttribute attribute = (MinAttribute)base.attribute;
 
 			if (property.propertyType == SerializedPropertyType.Integer)
 			{
