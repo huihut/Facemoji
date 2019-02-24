@@ -12,7 +12,7 @@
 ## 下载
 
 * [酷安 . Facemoji 废萌](https://www.coolapk.com/apk/192260)
-* [Google Play . Facemoji 废萌](https://play.google.com/store/apps/details?id=com.huihut.facemoji)
+* ~~[Google Play . Facemoji 废萌](https://play.google.com/store/apps/details?id=com.huihut.facemoji)~~
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
 * [Drive.Google . Facemoji/Platform](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
 * [Pan.Baidu . Facemoji/Platform](https://pan.baidu.com/s/1U08B_wPY67Zh1RTwFhrihA)

@@ -11,7 +11,7 @@ English | [简体中文](README_zh_CN.md)
 
 ## Releases
 
-* [Google Play . Facemoji 废萌](https://play.google.com/store/apps/details?id=com.huihut.facemoji)
+* ~~[Google Play . Facemoji 废萌](https://play.google.com/store/apps/details?id=com.huihut.facemoji)~~
 * [酷安 . Facemoji 废萌](https://www.coolapk.com/apk/192260)
 * [Github . Facemoji/releases](https://github.com/huihut/Facemoji/releases)
 * [Drive.Google . Facemoji/Platform](https://drive.google.com/open?id=1ofJMFIdzXCdYYO3qO5hvrTQPJUumgSY-)
